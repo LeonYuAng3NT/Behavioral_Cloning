@@ -145,4 +145,9 @@ Below is the Sample Data Distribution. The straight angle (zero degree) has far 
 
 I finally randomly shuffled the data set and put Y% of the data into a validation set.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by 5 in my model and a batch size of 128. I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
+
+###Discussion
+ Batch normalization can be applied before the training process in order to maintain the mean activation
+close to 0 and the activation standard deviation close to 1. The really downside of my result is that the vehicle consistantly trying to stay in the centre of the road and sometimes performs too many steering along the way. This problem is probably the outcome of not having sufficent data sets and recorded well-performed driving. Since my laptop was not able to train the model efficiently, I will definitely use Microsft Azure or large GPU desktop to test the validity of the training process. In addition, a video will be recorded for the autonomous mode in the future for demonstrating the result of training process.
