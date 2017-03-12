@@ -11,7 +11,7 @@
 
 [image1]: ./images/steering_angle.png "Streering angle"
 [image2]: ./images/training_set.png "training"
-[image3]: ./images/recovery_Image.gif "Recovery"
+[image3]: ./images/recovery_image.gif "Recovery"
 [image4]: ./images/histogram.png "Histogram Image"
 
 
