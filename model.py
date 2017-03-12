@@ -10,15 +10,19 @@ import csv
 import os
 import json
 
-training_file = 'train.p'
 
+# define local variables
+training_file = 'train.p'
+batch_size = 128
+
+# Store files into pickles
 with open(training_file, mode='rb') as f:
     train = pickle.load(f)
 
-X_train, Y_train = train['image_set'], train['angles_set']
+X_trainingSet, Y_traingingSet = train['image_set'], train['angles_set']
 
 
-X_train, X_val, Y_train, Y_val = train_test_split(X_train, Y_train, test_size=0.01, random_state=42)
+X_trainingSet, X_validate, Y_traingingSet, Y_validate = train_test_split(X_trainingSet, Y_traingingSet, test_size=0.01, random_state=42)
 
 model = Sequential()
 model.add(Lambda(lambda x: x/127.5 - 1.,
@@ -41,8 +45,8 @@ model.summary()
 
 
 
-batch_size = 128
 
+# Load from json file and use  Adam optimizer to train
 load_model = True
 if load_model:
 	json_file = open('model.json', 'r')
@@ -54,14 +58,14 @@ if load_model:
 
 model.compile(optimizer="adam", loss="mse")
 
-history = model.fit(X_train, Y_train,
+history = model.fit(X_trainingSet, Y_traingingSet,
                     batch_size=128, nb_epoch=5,
-                    verbose=1, validation_data=(X_val, Y_val), shuffle=True)
+                    verbose=1, validation_data=(X_validate, Y_validate), shuffle=True)
 
-Y_train_pred = np.transpose(model.predict(X_train))[0]
+Y_train_pred = np.transpose(model.predict(X_trainingSet))[0]
 print (np.amin(Y_train_pred ))
 print (np.amax(Y_train_pred ))
-print (np.mean((Y_train_pred -Y_train)**2))
+print (np.mean((Y_train_pred -Y_traingingSet)**2))
 
 # serialize model to JSON
 model_json = model.to_json()
@@ -69,4 +73,3 @@ with open("model.json", "w") as json_file:
     json_file.write(model_json)
 
 model.save_weights("model.h5")
-print("Saved model to disk")
