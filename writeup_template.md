@@ -79,12 +79,11 @@ My first step was to use a convolution neural network model similar to the Keras
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting.
 
-To combat the overfitting, I modified the model so that the dropout layers will
-be used after each Convolutional Layer to avoid overfitting issue.
+To combat the overfitting, I modified the model so that the dropout layers will be used after each Convolutional Layer to avoid overfitting issue.
 
 Then I tried to modified the batch size add multiple Dropout function to see the result. I printout the loss of each Epoch and notice that this approach will reduce the loss to less than 0.01 which is a standout performance compared to others.
 
-An Adam Optimizer was used with SGD as the loss function during training, the final values for the loss function were around .024 for both the training and validation set with about 40,000 training examples and 400 validation. To test the model accuracy even further the second track was tested next. The test runs on both track are generally successfully except the fact that the vehicle runs in in track 1 tends to steer arbitrarily at first and does not stay in the centre,but it will eventually go back to the track. This problem is probably due to the human error made by my training sets because I couldn't control the vehicle with valid accuracy at the first time and I did record it. However it was actually very easy to train the car to drive all the way through track 2 after minimal training with its already configured weights.
+An Adam Optimizer was used with SGD as the loss function during training, the final values for the loss function were around .024 for both the training and validation set with about 40,000 training examples and 400 validation. To test the model accuracy even further the second track was tested next. The test runs on both track are generally successfully except the fact that the vehicle runs in track 1 tends to steer arbitrarily at first and does not stay in the centre. It will eventually go back to the track. but this leads to the discussion that I bring up at the end which is that the recording should have been performed better.As I mentioned,  this problem is probably due to the human error made by training mode because I couldn't control the vehicle with valid accuracy at the first time and I did record it. However it was actually very easy to train the car to drive all the way through track 2 after minimal training with its already configured weights.
 
 At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
 
